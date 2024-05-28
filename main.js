@@ -1,62 +1,21 @@
-const botoes = document.querySelectorAll(".botao");
-const textos = document.querySelectorAll(".aba-conteudo");
+document.addEventListener('DOMContentLoaded', function() {
+    const homeLink = document.getElementById('home-link');
+    const recipesLink = document.getElementById('recipes-link');
+    const routesLink = document.getElementById('routes-link');
+    const mainContent = document.getElementById('main-content');
 
-for (let i = 0; i < botoes.length; i++) {
-    botoes[i].onclick = function () {
+    homeLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        mainContent.innerHTML = '<h2>Bem-vindo à nossa página de comida brasileira!</h2><p>Explore nossas receitas e rotas para descobrir o melhor da culinária do Brasil.</p>';
+    });
 
-        for (let j = 0; j < botoes.length; j++) {
-            botoes[j].classList.remove("ativo");
-            textos[j].classList.remove("ativo");
-        }
+    recipesLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        mainContent.innerHTML = '<h2>Receitas Brasileiras</h2><p>Aqui você encontrará uma variedade de receitas deliciosas da culinária brasileira.</p>';
+    });
 
-        botoes[i].classList.add("ativo");
-        textos[i].classList.add("ativo");
-    }
-}
-
-const contadores = document.querySelectorAll(".contador");
-const tempoObjetivo1 = new Date("2024-09-23T00:00:00");
-
-
-const tempos = [tempoObjetivo1];
- 
-function atualizaCronometro(){
-    for (let i=0; i<contadores.length; i++){
-    contadores[i].textContent = calculaTempo(tempos[i]);
-}
-}
-
-atualizaCronometro();
-setInterval(atualizaCronometro, 1000);
-
-contadores[0].textContent = calculaTempo(tempoObjetivo1);
-
-function calculaTempo(tempoObjetivo) {
-    let tempoAtual = new Date();
-    let tempoFinal = tempoObjetivo - tempoAtual;
-    let segundos = Math.floor(tempoFinal / 1000);
-    let minutos = Math.floor(segundos / 60);
-    let horas = Math.floor(minutos / 60);
-    let dias = Math.floor(horas / 24);
-
-    segundos %= 60;
-    minutos %= 60;
-    horas %= 24;
-    if(tempoFinal>0){
- return dias + " dias " + horas + " horas " + minutos + " minutos " + segundos + " segundos";
-} else{
-    return "Prazo finalizado";
-}
-}
-function atualizaCronometro(){
-    for(let i=0; i<contadores.length;i++){
-    contadores[i].textContent = calculaTempo(tempos[i]);
-    }
-    }
-
-    function comecaCronometro(){
-
-        atualizaCronometro();
-        setInterval(atualizaCronometro,1000);
-    }
-    comecaCronometro();
+    routesLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        mainContent.innerHTML = '<h2>Rotas de Comida</h2><p>Descubra as melhores rotas gastronômicas para explorar a diversidade culinária do Brasil.</p>';
+    });
+});
